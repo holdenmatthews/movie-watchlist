@@ -1,11 +1,9 @@
-import React from 'react'
+import MovieCard from './MovieCard'
+import '../App.css'
 
-
-const MovieScreen = (props) => {
-    const { movieList, page, setPage, watchlist } = props
-    console.log(movieList)
+const MovieScreen = ({ movieList, page, setPage, list }) => {
     const movieDisplay = movieList.map((movie, index) => {
-        return <h2>{movie.original_title}</h2>
+        return <MovieCard movie={movie}/>
     })
   return (
     <div className='page'>
