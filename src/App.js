@@ -10,6 +10,17 @@ function App() {
   const [list, setList] = useState([]);
   const [page, setPage] = useState(1);
 
+  const addMovie = (movie) => {
+    setList([...list, movie])
+  }
+  
+  const removeMovie = (movie) => {
+    const newState = list.filter((mov) => {
+      return mov !== movie
+    })
+    setList(newState)
+  }
+
 const getData = () => {
   axios.get(
       `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`
@@ -30,12 +41,17 @@ const getData = () => {
       <Header />
       <main>
         <MovieScreen 
+        addMovie={addMovie}
+        removeMovie={removeMovie}
         movieList={movieList}
         page={page}
         setPage={setPage}
         list={list}
         />
-        <Watchlist list={list} />
+        <Watchlist 
+        list={list}
+        removeMovie={removeMovie}
+        />
       </main>
     </div>
   );
