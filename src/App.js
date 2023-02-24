@@ -16,7 +16,7 @@ function App() {
   
   const removeMovie = (movie) => {
     const newState = list.filter((mov) => {
-      return mov !== movie
+      return mov.id !== movie.id
     })
     setList(newState)
   }
